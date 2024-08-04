@@ -4,6 +4,7 @@ import com.cardif.dnatest.entities.DnaEntity;
 import com.cardif.dnatest.reposotories.DnaRepository;
 import com.cardif.dnatest.services.AlienDetectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ public class AlienDetectorServiceImpl implements AlienDetectorService {
     private DnaRepository dnaRepository;
 
     @Override
+    @Cacheable("dna")
     public Boolean isAlien(String[] dna) {
         int n = dna.length;
         int foundSequences = 0;
